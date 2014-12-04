@@ -33,12 +33,14 @@ load('loadsubfile');
 if isfield(subjlist,'opt');gui=true;else gui=false;end
 
 fid=fopen([subjlist.opt.preproc_root,'/Paths.txt']);
-spmpath=textscan(fid,'%s');
-spmpath=char(spmpath{1,1}); 
+spmNewpath=textscan(fid,'%s');
+spmNewpath=char(spmNewpath{1,1}); 
 
-    
-%rmpath(genpath('/usr/share/spm8'));
-addpath(genpath(spmpath));
+spmPath=which('spm');
+if ~isempty(strfind(spmPath,'spm8'))
+rmpath(genpath(fileparts(spmPath)));
+end
+addpath(genpath(spmNewpath));
 
 
 
