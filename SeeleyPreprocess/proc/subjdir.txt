@@ -93,3 +93,8 @@ RTCNnSFmDI
 /nfs/controlNIC/9850/9850_20121220/rsfmri
 /nfs/controlNIC/9877/9877_20091103/rsfmri
 /nfs/controlNIC/9907/9907_20090818/rsfmri
+/nfs/patientNIC/11037/11037_20100308/rsfmri
+/nfs/patientNIC/12754/12754_20110711/rsfmri
+/nfs/patientNIC/3936/3936_20100624/rsfmri
+/nfs/patientNIC/6259/6259_20100423/rsfmri
+/nfs/patientNIC/7771/7771_20101112/rsfmri

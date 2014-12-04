@@ -8,7 +8,11 @@
 
 matlab -nodesktop << EOF
 try
+	unix('touch subjectLocked');
 	run rsfmri_preprocess.m;
+	unix('rm subjectLocked');
+catch
+	unix('rm subjectLocked');
 end
 quit
 EOF

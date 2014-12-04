@@ -914,4 +914,7 @@ if bptfilter_nuisance
             cmd=sprintf('mv bad_components_filtered.txt %s',processedfmri_dir_fullpth);unix(cmd);
         end
     end
+    if exist([log_dir_fullpth,'/subjectLocked'],'file');
+        unix(['rm ',log_dir_fullpth,'/subjectLocked']);
+    end
 end

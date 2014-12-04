@@ -173,7 +173,7 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 if  strcmp(get(handles.ready,'String'),'SCAN')
-    OKmessage('Scan directories first!')
+    OKmessage({'Scan directories first!'})
 else
     preproc_root=fileparts(fileparts(which('Preprocess.m')));
     handles.opt.preproc_root=preproc_root;
