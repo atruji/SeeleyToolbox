@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+#$ -l h=!seeley2
+#$ -cwd
+##$ -j y
+#$ -S /bin/bash
+. /etc/profile
+
+matlab -nodesktop << EOF
+try
+	unix('touch subjectLocked');
+	run rsfmri_preprocess.m;
+	unix('rm subjectLocked');
+catch
+	unix('rm subjectLocked');
+end
+quit
+EOF
+
