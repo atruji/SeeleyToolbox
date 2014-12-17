@@ -29,10 +29,17 @@
 %%% skull-stripped T1 image, eg 'LAS_HB10409_t1mprage_brain.nii'
 load('loadsubfile');
 
+% set up path
 % if script is called by GUI
-if isfield(subjlist,'opt');gui=true;else gui=false;end
+if isfield(subjlist,'opt');
+    gui=true;
+    preproc_root=subjlist.opt.preproc_root;
+else
+    gui=false;
+    preproc_root=regexprep(fileparts(which('rsfmri_preprocess_MASTER.m')),'/proc','');
+end
 
-fid=fopen([subjlist.opt.preproc_root,'/Paths.txt']);
+fid=fopen([preproc_root,'/Paths.txt']);
 spmNewpath=textscan(fid,'%s');
 spmNewpath=char(spmNewpath{1,1}); 
 
@@ -42,21 +49,11 @@ rmpath(genpath(fileparts(spmPath)));
 end
 addpath(genpath(spmNewpath));
 
+files_dir=[preproc_root,'/proc'];
 
-
-if gui
-    files_dir=[subjlist.opt.preproc_root,'/proc'];
-else
-    files_dir='/data/mridata/truji/rsfmri_preprocess_files'; % directory where all support files are
-end
-
-% set up path
-% NOTE: make sure SPM is added to matlab path
 addpath(genpath(files_dir));
 addpath(genpath(sprintf('$FSLDIR/etc/matlab')));
 setenv('FSLOUTPUTTYPE','NIFTI');
-
-
 
 % flags for steps to run/not run; note that subsequent steps may require files created at earlier stage
 % NOTE: if ICA is set to true, realign, slicetime, and smooth are automatically set
